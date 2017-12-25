@@ -1,0 +1,13 @@
+package ds.web.practice.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping(path= {"register.controller"})
+public class RegisterController {
+    public String register(Model model) {
+        return "Index.html";
+    }
+}
