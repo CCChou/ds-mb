@@ -12,7 +12,16 @@ public class UserDao {
     @Resource
     private SessionFactory sessionFactory;
     
-    public UserBean getUserInfo(String account) {
-        return sessionFactory.getCurrentSession().get(UserBean.class, "dennis");
+    public UserBean getUserByAccount(String account) {
+        return sessionFactory.getCurrentSession().get(UserBean.class, account);
+    }
+    
+    public void create(UserBean userBean) {
+        sessionFactory.getCurrentSession().save(userBean);
+    }
+    
+    // @TODO not implemented
+    public boolean updateUser(UserBean userBean) {
+        return false;
     }
 }

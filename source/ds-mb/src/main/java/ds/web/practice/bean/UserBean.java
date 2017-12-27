@@ -13,6 +13,13 @@ public class UserBean {
     @Column
     private String hashedPwd;
     
+    public UserBean() {}
+    
+    public UserBean(String account, String hashedPwd) {
+        this.account = account;
+        this.hashedPwd = hashedPwd;
+    }
+    
     public String getAccount() {
         return account;
     }
