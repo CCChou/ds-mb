@@ -18,6 +18,11 @@ public class LoginService {
     
     @Transactional
     public boolean verifyUser(String account, String password) {
+    	UserBean userBean = userDao.getUserByAccount(account);
+    	if(userBean == null) {
+    		return false;
+    	}
+    	
         String hashedPwd = null;
         try {
             hashedPwd = SecureUtil.hash("SHA-256", password);
@@ -25,8 +30,6 @@ public class LoginService {
             // TODO use log replace this
             e.printStackTrace();
         }
-        
-        UserBean userBean = userDao.getUserByAccount(account);
         
         return account.equals(userBean.getAccount()) && hashedPwd.equals(userBean.getHashedPwd());
     }

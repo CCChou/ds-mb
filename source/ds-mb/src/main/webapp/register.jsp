@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zh_TW">
 
@@ -5,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Register</title>
+	<title>Login</title>
 	<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!--[if lt IE 9]>
 			<script src="../assets/js/html5shiv.js"></script>
@@ -33,12 +34,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<div class="navbar-brand">Dennis Web Test</div>
+			<div class="navbar-brand"><a href="./index.jsp">Dennis Web Test</a></div>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="./login.html">登入</a></li>
-				<li><a href="./register.html">註冊</a></li>
+				<li><a href="./login.jsp">登入</a></li>
+				<li><a href="./register.jsp">註冊</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -66,25 +67,26 @@
 			<div class="col-sm-10">
                     <form action="./register.controller" method="post" class="form-horizontal">
                         <div class="form-group">
-                            <label for="account" class="col-sm-2 control-label">帳號</label>
+                            <label for="account" class="col-sm-2 control-label">帳號</label>${errors.accountError}
                             <div class="col-sm-5">
-                                <input type="text" class="form-control"name="account" id="account" placeholder="請輸入您的帳號" required="required">
+                                <input type="text" class="form-control"name="account" id="account" placeholder="請輸入你的帳號" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                              <label for="password" class="col-sm-2 control-label">密碼</label>
                              <div class="col-sm-5">
-                                 <input type="password" class="form-control" name="password" id="password" placeholder="請輸入您的密碼" required="required">
+                                 <input type="password" class="form-control" name="password" id="password" placeholder="請輸入你的密碼" required="required">
                              </div>
                          </div>
+
                          <div class="form-group">
-                             <label for="passwordConfirm" class="col-sm-2 control-label">密碼確認</label>
+                             <label for="passwordConfirm" class="col-sm-2 control-label">密碼確認</label>${errors.passwordConfirmError}
                              <div class="col-sm-5">
-                                 <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="請再次輸入您的密碼" required="required">
+                                 <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="請再次輸入你的密碼" required="required">
                              </div>
                          </div>
                          <div class="col-sm-2 col-sm-push-2 form-group">
-                             <button class="btn btn-info">註冊</button>
+                             <button class="btn btn-info">註冊</button>
                          </div>
                     </form>
 			</div>

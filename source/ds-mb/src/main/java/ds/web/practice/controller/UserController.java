@@ -19,16 +19,18 @@ public class UserController {
     private LoginService loginService;
     @Resource
     private RegisterService registerService; 
-    private static String successPage = "";
-    private static String errorPage = "";
+    private static String successPage = "index.html";
+    private static String loginPage = "login.jsp";
+    private static String registerPage = "register.jsp";
     
     @RequestMapping(method= {RequestMethod.POST}, path= {"/login.controller"})
     public String login(Model model, String account, String password) {
         Map<String, String> errors = new HashMap<>();
+        model.addAttribute("errors", errors);
         
         if (!loginService.verifyUser(account, password)) {
-            errors.put("", "帳號不存在或密碼錯誤");
-            return errorPage;
+            errors.put("errorMessage", "帳號不存在或密碼錯誤");
+            return loginPage;
         }
         
         return successPage;
@@ -37,15 +39,16 @@ public class UserController {
     @RequestMapping(method= {RequestMethod.POST}, path= {"/register.controller"})
     public String register(Model model, String account, String password, String passwordConfirm) {
         Map<String, String> errors = new HashMap<>();
-
-        if(password.equals(passwordConfirm)) {
-            errors.put("", "密碼不一致");
-            return errorPage;
+        model.addAttribute("errors", errors);
+        
+        if(!password.equals(passwordConfirm)) {
+            errors.put("passwordConfirmError", "密碼不一致");
+            return registerPage;
         }
         
         if(!registerService.checkAccount(account)) {
-            errors.put("", "帳號名稱已被註冊");
-            return errorPage;
+            errors.put("accountError", "帳號名稱已被註冊");
+            return registerPage;
         }
         
         registerService.register(account, password);

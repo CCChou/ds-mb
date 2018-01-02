@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zh_TW">
 
@@ -33,12 +34,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<div class="navbar-brand">Dennis Web Test</div>
+			<div class="navbar-brand"><a href="./index.jsp">Dennis Web Test</a></div>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="./login.html">登入</a></li>
-				<li><a href="./register.html">註冊</a></li>
+				<li><a href="./login.jsp">登入</a></li>
+				<li><a href="./register.jsp">註冊</a></li>
 			</ul>
 		</div>
 	</nav>
