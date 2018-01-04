@@ -19,10 +19,7 @@ public class UserController {
     private LoginService loginService;
     @Resource
     private RegisterService registerService; 
-    private static String successPage = "index.html";
-    private static String loginPage = "login.jsp";
-    private static String registerPage = "register.jsp";
-    
+        
     @RequestMapping(method= {RequestMethod.POST}, path= {"/login.controller"})
     public String login(Model model, String account, String password) {
         Map<String, String> errors = new HashMap<>();
@@ -30,10 +27,11 @@ public class UserController {
         
         if (!loginService.verifyUser(account, password)) {
             errors.put("errorMessage", "帳號不存在或密碼錯誤");
-            return loginPage;
+            return "loginPage";
         }
         
-        return successPage;
+        // TODO add session attribute account
+        return "index";
     }
     
     @RequestMapping(method= {RequestMethod.POST}, path= {"/register.controller"})
@@ -43,16 +41,16 @@ public class UserController {
         
         if(!password.equals(passwordConfirm)) {
             errors.put("passwordConfirmError", "密碼不一致");
-            return registerPage;
+            return "registerPage";
         }
         
         if(!registerService.checkAccount(account)) {
             errors.put("accountError", "帳號名稱已被註冊");
-            return registerPage;
+            return "registerPage";
         }
         
         registerService.register(account, password);
-        return successPage;
+        return "index";
     }
     
 }
