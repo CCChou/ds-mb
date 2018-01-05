@@ -9,11 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import ds.web.practice.service.LoginService;
 import ds.web.practice.service.RegisterService;
 
 @Controller
+@SessionAttributes("loginedAccount")
 public class UserController {
     @Resource
     private LoginService loginService;
@@ -30,7 +33,13 @@ public class UserController {
             return "loginPage";
         }
         
-        // TODO add session attribute account
+        model.addAttribute("loginedAccount", account);
+        return "index";
+    }
+    
+    @RequestMapping(method= {RequestMethod.GET}, path= {"/logout.controller"})
+    public String logout(SessionStatus status) {
+        status.setComplete();
         return "index";
     }
     

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zh_TW">
 
@@ -38,8 +39,16 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="./login.jsp">登入</a></li>
-				<li><a href="./register.jsp">註冊</a></li>
+				<c:choose>
+					<c:when test = "${not empty loginedAccount}">
+						<li><a href="#">${loginedAccount}</a></li>
+						<li><a href="./logout.controller">登出</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="./login.jsp">登入</a></li>
+						<li><a href="./register.jsp">註冊</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 	</nav>
@@ -60,9 +69,17 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group">
-					<a href="#" class="list-group-item">最新文章</a>
+					<a href="./messageBoard.jsp" class="list-group-item">最新文章</a>
 					<a href="#" class="list-group-item">投票區</a>
 				</div>
+			</div>
+			<div class="col-sm-10">
+				<form action="./post.controller" method="post" class="form-horizontal">
+					<div class="form-group">
+                        <button class="btn btn-info">發新文章</button>
+               		</div>
+               		<!-- jsp -->
+                </form>
 			</div>
 		</div>
 	</div>

@@ -60,7 +60,7 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group">
-					<a href="#" class="list-group-item">最新文章</a>
+					<a href="./messageBoard.jsp" class="list-group-item">最新文章</a>
 					<a href="#" class="list-group-item">投票區</a>
 				</div>
 			</div>
