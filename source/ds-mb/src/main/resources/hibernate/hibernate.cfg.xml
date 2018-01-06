@@ -9,9 +9,7 @@
         <property name="current_session_context_class">thread</property>
         -->
 		<property name="show_sql">true</property>
-		<!--  
 		<mapping class="ds.web.practice.bean.ArticleBean"/>
-		-->
 		<mapping class="ds.web.practice.bean.UserBean"/>
     </session-factory>
 </hibernate-configuration>

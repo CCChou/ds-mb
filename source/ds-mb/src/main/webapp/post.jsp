@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                             <label for="password" class="col-sm-2 control-label">文章內容</label>
+                             <label for="content" class="col-sm-2 control-label">文章內容</label>
                              <div class="col-sm-5">
                                  <textarea name="content" class="form-control" rows="10" required="required"></textarea>
                              </div>

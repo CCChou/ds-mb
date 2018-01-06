@@ -25,7 +25,6 @@
 </head>
 
 <body>
-
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="navbar-header">
 			<!-- 漢堡要設定這個才會出現  target 要與下方 collapse 部分搭配 才吃的到 JS 效果-->

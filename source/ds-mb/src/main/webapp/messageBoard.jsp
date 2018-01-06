@@ -74,7 +74,7 @@
 				</div>
 			</div>
 			<div class="col-sm-10">
-				<form action="./post.controller" method="post" class="form-horizontal">
+				<form action="./post.jsp" method="post" class="form-horizontal">
 					<div class="form-group">
                         <button class="btn btn-info">發新文章</button>
                		</div>
