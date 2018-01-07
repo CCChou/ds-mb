@@ -9,8 +9,8 @@
 	<title>Login</title>
 	<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!--[if lt IE 9]>
-			<script src="../assets/js/html5shiv.js"></script>
-			<script src="../assets/js/respond.min.js"></script>
+			<script src="./lib/bootstrap/js/html5shiv.js"></script>
+			<script src="./lib/bootstrap/js/respond.min.js"></script>
 		<![endif]-->
 	<style>
 		.main-content h1 {
@@ -60,7 +60,7 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group">
-					<a href="./messageBoard.jsp" class="list-group-item">最新文章</a>
+					<a href="./messageBoard" class="list-group-item">最新文章</a>
 					<a href="#" class="list-group-item">投票區</a>
 				</div>
 			</div>

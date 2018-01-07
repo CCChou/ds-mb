@@ -10,18 +10,9 @@
 	<title>Message Board</title>
 	<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!--[if lt IE 9]>
-			<script src="../assets/js/html5shiv.js"></script>
-			<script src="../assets/js/respond.min.js"></script>
+			<script src="./lib/bootstrap/js/html5shiv.js"></script>
+			<script src="./lib/bootstrap/js/respond.min.js"></script>
 		<![endif]-->
-	<style>
-		.main-content h1 {
-			margin-top: 0;
-		}
-
-		.breadcrumb {
-			background-color: transparent;
-		}
-	</style>
 </head>
 
 <body>
@@ -69,17 +60,43 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group">
-					<a href="./messageBoard.jsp" class="list-group-item">最新文章</a>
+					<a href="./messageBoard" class="list-group-item">最新文章</a>
 					<a href="#" class="list-group-item">投票區</a>
 				</div>
 			</div>
 			<div class="col-sm-10">
-				<form action="./post.jsp" method="post" class="form-horizontal">
+				<form action="./messageBoard/post.jsp" method="post" class="form-horizontal">
 					<div class="form-group">
                         <button class="btn btn-info">發新文章</button>
                		</div>
-               		<!-- jsp -->
                 </form>
+               		<table class="table table-hover">
+               			<thead>
+               				<tr>
+               					<th>文章名稱</th>
+               					<th>作者</th>
+               					<th>發表日期</th>
+               				</tr>
+               				<c:forEach var="article" items="${articleBeans}">
+               					<tr>
+               						<th><a href="./messageBoard/article?id=${article.id}">${article.title}</a></th>
+               						<th>${article.account}</th>
+               						<th>${article.date}</th>
+               					</tr>
+               				</c:forEach>
+               			</thead>
+               			<tbody>
+               				
+               			</tbody>
+               		</table>
+               		<div class="text-center">
+               			<ul class="pagination">
+							<c:forEach var="page" items="${pages}">
+								<!-- present page active -->
+               					<li><a href="./messageBoard?page=${page}">${page}</a></li>
+               				</c:forEach>
+						</ul>
+					</div>
 			</div>
 		</div>
 	</div>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,12 +21,24 @@ public class ArticleDao {
 		sessionFactory.getCurrentSession().save(new ArticleBean(account, title, content));
 	}
 	
-	public ArticleBean findById(String id) {
-		return null;
+	@Transactional
+	public ArticleBean findById(int id) {
+		return sessionFactory.getCurrentSession().get(ArticleBean.class, id);
 	}
 	
-	// FIXME not find all, should be a period
-	public List<String> findAll() {
-		return null;
+	@Transactional
+	@SuppressWarnings("rawtypes")
+	public long getCount() {
+		Query query = sessionFactory.getCurrentSession().createQuery("select count(*) from ArticleBean");
+		return (long)query.uniqueResult();
+	}
+	
+	@Transactional
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<ArticleBean> findByRange(int start, int limit) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from ArticleBean order by date")
+				                    .setFirstResult(start)
+				                    .setMaxResults(limit);
+		return query.list();
 	}
 }

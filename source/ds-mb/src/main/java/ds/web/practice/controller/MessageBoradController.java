@@ -1,5 +1,8 @@
 package ds.web.practice.controller;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -7,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import ds.web.practice.bean.ArticleBean;
 import ds.web.practice.service.DisplayService;
 import ds.web.practice.service.PostService;
 
@@ -20,20 +25,49 @@ public class MessageBoradController {
 	@Resource
 	private DisplayService displayService;
 	
-	@RequestMapping(method= {RequestMethod.POST}, path= {"/messageBoard"})
-	public String showAll(Model model) {
-		return "";
+	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard"})
+	public String showByPage(Model model, @RequestParam(value="page", defaultValue="1") String page) {
+		int pageNum = Integer.parseInt(page);
+		List<ArticleBean> articleBeans = displayService.getTitleByRange(pageNum+((pageNum-1)*10), 10);
+		model.addAttribute("articleBeans", articleBeans);
+		model.addAttribute("pages", getPaginationInfo(pageNum));
+		return "messageBoard";
 	}
 	
-	@RequestMapping(method= {RequestMethod.POST}, path= {"/messageBoard/{id}"})
-	public String showArticleById(Model model) {
-		return "";
+	private List<String> getPaginationInfo(int pageNum) {
+		int start = 1;
+		int length = 10;
+		int pageCount = (int)(displayService.getArticleCount()/10);
+		List<String> pages = new LinkedList<>();
+		
+		if(pageNum > 6) {
+			start = pageNum - 5;
+		}
+		
+		if(pageCount <= 10) {
+			length = pageCount;
+		} else if (pageCount == 0) {
+			length = 1;
+		}
+		
+		for(int i=start; i<=length; i++) {
+			pages.add(String.valueOf(i));
+		}
+		
+		return pages;
+	}
+	
+	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard/article"})
+	public String showArticleById(Model model, String id) {
+		ArticleBean articleBean = displayService.getArticleById(Integer.parseInt(id));
+		model.addAttribute("articleBean", articleBean);
+		return "article";
 	}
 	
 	@RequestMapping(method= {RequestMethod.POST}, path= {"/messageBoard/post.controller"})
 	public String postNewArticle(Model model, @ModelAttribute("loginedAccount") String loginedAccount, String title, String content) {
 		// TODO prevent XSS
 		postService.postNewArticle(loginedAccount, title, content);
-		return "messageBoard";
+		return "redirectMessageBoard";
 	}
 }

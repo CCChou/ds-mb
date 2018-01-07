@@ -4,13 +4,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="index" class="org.springframework.web.servlet.view.RedirectView">
-		<property name="url" value="index.jsp"/>
+		<property name="url" value="/ds-mb/index.jsp"/>
 	</bean>
 	<bean id="loginPage" class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="login.jsp"/>
+		<property name="url" value="/login.jsp"/>
 	</bean>
 	<bean id="registerPage" class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="register.jsp"/>
+		<property name="url" value="/register.jsp"/>
 	</bean>
-
+	<bean id="redirectMessageBoard" class="org.springframework.web.servlet.view.RedirectView">
+		<property name="url" value="/ds-mb/messageBoard"/>
+	</bean>
+	<bean id="messageBoard" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/messageBoard/messageBoard.jsp"/>
+	</bean>
+	<bean id="article" class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/messageBoard/article.jsp"/>
+	</bean>
 </beans>

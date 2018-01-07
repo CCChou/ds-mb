@@ -7,20 +7,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Login</title>
-	<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!--[if lt IE 9]>
-			<script src="../assets/js/html5shiv.js"></script>
-			<script src="../assets/js/respond.min.js"></script>
+			<script src="./lib/bootstrap/js/html5shiv.js"></script>
+			<script src="./lib/bootstrap/js/respond.min.js"></script>
 		<![endif]-->
-	<style>
-		.main-content h1 {
-			margin-top: 0;
-		}
-
-		.breadcrumb {
-			background-color: transparent;
-		}
-	</style>
 </head>
 
 <body>
@@ -60,7 +51,7 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group">
-					<a href="./messageBoard.jsp" class="list-group-item">最新文章</a>
+					<a href="./messageBoard" class="list-group-item">最新文章</a>
 					<a href="#" class="list-group-item">投票區</a>
 				</div>
 			</div>
