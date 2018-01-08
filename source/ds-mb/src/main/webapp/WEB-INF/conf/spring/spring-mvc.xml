@@ -10,6 +10,12 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:component-scan base-package="ds.web.practice" />
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/post.controller"/>
+			<bean class="ds.web.practice.interceptor.LoginVerifyInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
 		<property name="location" value="/WEB-INF/conf/spring/views.xml"/>
 	</bean>

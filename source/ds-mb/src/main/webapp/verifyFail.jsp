@@ -7,16 +7,24 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Article</title>
-	<link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<title>Error</title>
+	<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!--[if lt IE 9]>
-			<script src="../lib/bootstrap/js/html5shiv.js"></script>
-			<script src="../lib/bootstrap/js/respond.min.js"></script>
+			<script src="./lib/bootstrap/js/html5shiv.js"></script>
+			<script src="./lib/bootstrap/js/respond.min.js"></script>
 		<![endif]-->
+	<style>
+		.main-content h1 {
+			margin-top: 0;
+		}
+
+		.breadcrumb {
+			background-color: transparent;
+		}
+	</style>
 </head>
 
 <body>
-
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="navbar-header">
 			<!-- 漢堡要設定這個才會出現  target 要與下方 collapse 部分搭配 才吃的到 JS 效果-->
@@ -26,18 +34,18 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<div class="navbar-brand"><a href="../index.jsp">Dennis Web Test</a></div>
+			<div class="navbar-brand"><a href="./index.jsp">Dennis Web Test</a></div>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test = "${not empty loginedAccount}">
 						<li><a href="#">${loginedAccount}</a></li>
-						<li><a href="../logout.controller">登出</a></li>
+						<li><a href="./logout.controller">登出</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="../login.jsp">登入</a></li>
-						<li><a href="../register.jsp">註冊</a></li>
+						<li><a href="./login.jsp">登入</a></li>
+						<li><a href="./register.jsp">註冊</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -60,36 +68,20 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group">
-					<a href="../messageBoard.controller" class="list-group-item">最新文章</a>
+					<a href="./messageBoard.controller" class="list-group-item">最新文章</a>
 					<a href="#" class="list-group-item">投票區</a>
 				</div>
 			</div>
-			<div class="col-sm-10">
-				<form action="./post.jsp" method="post" class="form-horizontal">
-					<div class="form-group">
-                        <button class="btn btn-info">發新文章</button>
-               		</div>
-                </form>
-                <div class="page-header">
-                	<h1>${articleBean.title}</h1>
-                </div>
-               		<table class="table table-hover">
-               			<tbody>
-               				<tr>
-               					<th>作者: ${articleBean.account}</th>
-               					<th>發表時間: ${articleBean.date}</th>
-               				</tr>
-               				<tr>
-               					<th>${articleBean.content}</th>
-               				</tr>
-               			</tbody>
-               		</table>
+			<div class="col-sm-10 main-content">
+				<div class="text-center">
+					請先登入
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<script src="../lib/bootstrap/js/jquery1.11.1.js"></script>
-	<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./lib/bootstrap/js/jquery1.11.1.js"></script>
+	<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
