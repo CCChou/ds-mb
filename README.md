@@ -7,4 +7,5 @@
 * add interceptor to confirm login or not
 * modify the view to make it more beautiful
 * http -> https
+* add comment function
 * ...Else
