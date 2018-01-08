@@ -25,10 +25,10 @@ public class MessageBoradController {
 	@Resource
 	private DisplayService displayService;
 	
-	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard"})
+	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard.controller"})
 	public String showByPage(Model model, @RequestParam(value="page", defaultValue="1") String page) {
 		int pageNum = Integer.parseInt(page);
-		List<ArticleBean> articleBeans = displayService.getTitleByRange(pageNum+((pageNum-1)*10), 10);
+		List<ArticleBean> articleBeans = displayService.getTitleByRange(10*(pageNum-1), 10);
 		model.addAttribute("articleBeans", articleBeans);
 		model.addAttribute("pages", getPaginationInfo(pageNum));
 		return "messageBoard";
@@ -57,7 +57,7 @@ public class MessageBoradController {
 		return pages;
 	}
 	
-	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard/article"})
+	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard/article.controller"})
 	public String showArticleById(Model model, String id) {
 		ArticleBean articleBean = displayService.getArticleById(Integer.parseInt(id));
 		model.addAttribute("articleBean", articleBean);

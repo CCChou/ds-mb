@@ -68,7 +68,7 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group">
-					<a href="./messageBoard" class="list-group-item">最新文章</a>
+					<a href="./messageBoard.controller" class="list-group-item">最新文章</a>
 					<a href="#" class="list-group-item">投票區</a>
 				</div>
 			</div>

@@ -60,7 +60,7 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="list-group">
-					<a href="./messageBoard" class="list-group-item">最新文章</a>
+					<a href="./messageBoard.controller" class="list-group-item">最新文章</a>
 					<a href="#" class="list-group-item">投票區</a>
 				</div>
 			</div>
@@ -79,7 +79,7 @@
                				</tr>
                				<c:forEach var="article" items="${articleBeans}">
                					<tr>
-               						<th><a href="./messageBoard/article?id=${article.id}">${article.title}</a></th>
+               						<th><a href="./messageBoard/article.controller?id=${article.id}">${article.title}</a></th>
                						<th>${article.account}</th>
                						<th>${article.date}</th>
                					</tr>
@@ -93,7 +93,7 @@
                			<ul class="pagination">
 							<c:forEach var="page" items="${pages}">
 								<!-- present page active -->
-               					<li><a href="./messageBoard?page=${page}">${page}</a></li>
+               					<li><a href="./messageBoard.controller?page=${page}">${page}</a></li>
                				</c:forEach>
 						</ul>
 					</div>

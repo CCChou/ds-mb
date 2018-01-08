@@ -36,7 +36,7 @@ public class ArticleDao {
 	@Transactional
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<ArticleBean> findByRange(int start, int limit) {
-		Query query = sessionFactory.getCurrentSession().createQuery("from ArticleBean order by date")
+		Query query = sessionFactory.getCurrentSession().createQuery("from ArticleBean order by date desc")
 				                    .setFirstResult(start)
 				                    .setMaxResults(limit);
 		return query.list();
