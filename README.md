@@ -1,10 +1,10 @@
-Just a practice with Spring and Hibernate
+# Just a practice with Spring and Hibernate
 
-TODO LIST
+# TODO LIST
 
-# modify url structure
-# add filter to avoid xss
-# add interceptor to confirm login or not
-# modify the view to make it more beautiful
-# http -> https
+* modify url structure
+* add filter to avoid xss
+* add interceptor to confirm login or not
+* modify the view to make it more beautiful
+* http -> https
 
