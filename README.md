@@ -1,4 +1,5 @@
 # Just a practice with Spring and Hibernate
+http://18.220.255.1:8080/ds-mb/index.jsp
 
 # TODO LIST
 
