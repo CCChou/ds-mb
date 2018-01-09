@@ -1,0 +1,13 @@
+create table article(
+	id int auto_increment primary key,
+	title nchar(255),
+	content nchar(255),
+	account char(255),
+	date datetime default current_timestamp,
+	foreign key (account) references user(account)
+)
+
+create table user(
+	account char(255) primary key,
+	hashedPwd char(255)
+)

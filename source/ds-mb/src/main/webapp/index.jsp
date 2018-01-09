@@ -13,15 +13,6 @@
 			<script src="./lib/bootstrap/js/html5shiv.js"></script>
 			<script src="./lib/bootstrap/js/respond.min.js"></script>
 		<![endif]-->
-	<style>
-		.main-content h1 {
-			margin-top: 0;
-		}
-
-		.breadcrumb {
-			background-color: transparent;
-		}
-	</style>
 </head>
 
 <body>

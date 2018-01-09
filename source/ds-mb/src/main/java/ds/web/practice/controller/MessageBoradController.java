@@ -1,5 +1,6 @@
 package ds.web.practice.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class MessageBoradController {
 	private List<String> getPaginationInfo(int pageNum) {
 		int start = 1;
 		int length = 10;
-		int pageCount = (int)(displayService.getArticleCount()/10);
+		int pageCount = (int)(displayService.getArticleCount()/10 +1);
 		List<String> pages = new LinkedList<>();
 		
 		if(pageNum > 6) {
@@ -65,7 +66,7 @@ public class MessageBoradController {
 	}
 	
 	@RequestMapping(method= {RequestMethod.POST}, path= {"/messageBoard/post.controller"})
-	public String postNewArticle(Model model, @ModelAttribute("loginedAccount") String loginedAccount, String title, String content) {
+	public String postNewArticle(Model model, @ModelAttribute("loginedAccount") String loginedAccount, String title, String content) throws UnsupportedEncodingException {
 		// TODO prevent XSS
 		postService.postNewArticle(loginedAccount, title, content);
 		return "redirectMessageBoard";
