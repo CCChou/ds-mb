@@ -18,12 +18,13 @@ import ds.web.practice.service.DisplayService;
 public class SearchController {
     @Resource
     private DisplayService displayService;
-    @RequestMapping(method= {RequestMethod.POST}, path= {"/search.controller"})
+    @RequestMapping(method= {RequestMethod.GET}, path= {"/search.controller"})
     public String search(Model model, @RequestParam(value="page", defaultValue="1") String page, @RequestParam(value="condition") String condition) {
         int pageNum = Integer.parseInt(page);
         List<ArticleBean> articleBeans = displayService.getTitleRangeByCondition(condition, 10*(pageNum-1), 10);
         model.addAttribute("articleBeans", articleBeans);
         model.addAttribute("pages", getPaginationInfo(condition, pageNum));
+        model.addAttribute("condition", condition);
         return "result";
     }
     

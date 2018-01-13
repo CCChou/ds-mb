@@ -39,7 +39,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4 col-sm-push-8">
-				<form action="./search.controller" method="post" class="form-horizontal">
+				<form action="./search.controller" method="get" class="form-horizontal">
 					<div class="input-group">
 						<input type="text" class="form-control" name="condition" placeholder="請輸入關鍵字">
 						<span class="input-group-btn">
