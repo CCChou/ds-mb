@@ -7,24 +7,16 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Error</title>
+	<title>Search Result</title>
 	<link href="./lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!--[if lt IE 9]>
 			<script src="./lib/bootstrap/js/html5shiv.js"></script>
 			<script src="./lib/bootstrap/js/respond.min.js"></script>
 		<![endif]-->
-	<style>
-		.main-content h1 {
-			margin-top: 0;
-		}
-
-		.breadcrumb {
-			background-color: transparent;
-		}
-	</style>
 </head>
 
 <body>
+
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="navbar-header">
 			<!-- 漢堡要設定這個才會出現  target 要與下方 collapse 部分搭配 才吃的到 JS 效果-->
@@ -74,10 +66,34 @@
 					<a href="#" class="list-group-item">投票區</a>
 				</div>
 			</div>
-			<div class="col-sm-10 main-content">
-				<div class="text-center">
-					請先登入
-				</div>
+			<div class="col-sm-10">
+               		<table class="table table-hover">
+               			<thead>
+               				<tr>
+               					<th>文章名稱</th>
+               					<th>作者</th>
+               					<th>發表日期</th>
+               				</tr>
+               				<c:forEach var="article" items="${articleBeans}">
+               					<tr>
+               						<th><a href="./messageBoard/article.controller?id=${article.id}">${article.title}</a></th>
+               						<th>${article.account}</th>
+               						<th>${article.date}</th>
+               					</tr>
+               				</c:forEach>
+               			</thead>
+               			<tbody>
+               				
+               			</tbody>
+               		</table>
+               		<div class="text-center">
+               			<ul class="pagination">
+							<c:forEach var="page" items="${pages}">
+								<!-- present page active -->
+               					<li><a href="./search.controller?page=${page}">${page}</a></li>
+               				</c:forEach>
+						</ul>
+					</div>
 			</div>
 		</div>
 	</div>

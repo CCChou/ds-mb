@@ -25,5 +25,12 @@ public class DisplayService {
 	public ArticleBean getArticleById(int id) {
 		return articleDao.findById(id);
 	}
-
+	
+	public List<ArticleBean> getTitleRangeByCondition(String condition, int start, int limit) {
+        return articleDao.findTitleRangeByCondition(condition, start, limit);
+    }
+    
+    public long getArticleCountByCondition(String condition) {
+        return articleDao.getCountByTitleCondition(condition);
+    }
 }

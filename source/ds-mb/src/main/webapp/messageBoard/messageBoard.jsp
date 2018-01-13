@@ -48,12 +48,14 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4 col-sm-push-8">
-				<div class="input-group">
-						<input type="text" class="form-control" placeholder="請輸入關鍵字">
+				<form action="./search.controller" method="post" class="form-horizontal">
+					<div class="input-group">
+						<input type="text" class="form-control" name="condition" placeholder="請輸入關鍵字">
 						<span class="input-group-btn">
-							<button class="btn btn-info" type="button">搜尋</button>
+							<input type="submit" class="btn btn-info" value="搜尋"/>
 						</span>
-				</div>
+					</div>
+				</form>
 			</div>
 		</div>
 		<br>

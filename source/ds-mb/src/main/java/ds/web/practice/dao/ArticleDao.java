@@ -41,4 +41,23 @@ public class ArticleDao {
 				                    .setMaxResults(limit);
 		return query.list();
 	}
+	
+	@Transactional
+    @SuppressWarnings("rawtypes")
+    public long getCountByTitleCondition(String condition) {
+        Query query = sessionFactory.getCurrentSession().createQuery("select count(*) from ArticleBean where title like ?")
+                                    .setParameter(0, "%" + condition + "%");
+        return (long)query.uniqueResult();
+    }
+    
+    @Transactional
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    public List<ArticleBean> findTitleRangeByCondition(String condition, int start, int limit) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from ArticleBean where title like ? order by date desc")
+                                    .setParameter(0, "%" + condition + "%")
+                                    .setFirstResult(start)
+                                    .setMaxResults(limit);
+        return query.list();
+    }
+	
 }
