@@ -1,13 +1,23 @@
 create table article(
 	id int auto_increment primary key,
-	title nchar(255),
-	content nchar(255),
-	account char(255),
+	title nvarchar(255),
+	content nvarchar(255),
+	account varchar(255),
 	date datetime default current_timestamp,
 	foreign key (account) references user(account)
 )
 
 create table user(
-	account char(255) primary key,
-	hashedPwd char(255)
+	account varchar(255) primary key,
+	hashedPwd varchar(255)
+)
+
+create table comment(
+	id int auto_increment primary key,
+	articleId int,
+	account varchar(255),
+	date datetime default current_timestamp,
+	comment nvarchar(255),
+	foreign key (account) references user(account),
+	foreign key (articleId) references article(id)
 )
