@@ -26,7 +26,8 @@ public class MessageBoradController {
 	@Resource
 	private DisplayService displayService;
 	
-	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard.controller"})
+	// TODO the pagination is not good need to improve
+	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard/messageBoard.controller"})
 	public String showByPage(Model model, @RequestParam(value="page", defaultValue="1") String page) {
 		int pageNum = Integer.parseInt(page);
 		List<ArticleBean> articleBeans = displayService.getTitleByRange(10*(pageNum-1), 10);
