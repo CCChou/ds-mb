@@ -4,9 +4,7 @@ http://18.220.255.1:8080/ds-mb/index.jsp
 # TODO LIST
 
 **Structure**
-- use sitemesh to reduce the duplication
 - use ajax and json to transport the data 
-- modify url structure
 
 **Secure**
 - http -> https
