@@ -9,7 +9,8 @@ http://18.220.255.1:8080/ds-mb/index.jsp
 **Secure**
 - http -> https
 - add filter to avoid xss
-- try Spring Secure
+- try Spring Security
+- add Error Handling
 
 **Function**
 - add comment function
