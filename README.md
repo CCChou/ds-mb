@@ -18,7 +18,8 @@ http://18.220.255.1:8080/ds-mb/index.jsp
 * user management
   * change password
   * article management
-    * test
+    * edit
+    * delete
 
 
 **Else**
