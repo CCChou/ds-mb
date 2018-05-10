@@ -16,8 +16,8 @@ http://18.220.255.1:8080/ds-mb/index.jsp
 * add comment function
 * replace the search with solr or elasticsearch
 * user management
- * change password
- * article management
+  * change password
+  * article management
 
 
 **Else**
