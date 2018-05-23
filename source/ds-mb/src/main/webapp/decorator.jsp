@@ -43,8 +43,6 @@
 			</ul>
 		</div>
 	</nav>
-
-
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4 col-sm-push-8">
@@ -71,7 +69,6 @@
 			</div>
 		</div>
 	</div>
-
 	<script src="${context}/lib/bootstrap/js/jquery1.11.1.js"></script>
 	<script src="${context}/lib/bootstrap/js/bootstrap.min.js"></script>
 </body>

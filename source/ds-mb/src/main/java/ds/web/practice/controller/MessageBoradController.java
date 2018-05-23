@@ -26,33 +26,27 @@ public class MessageBoradController {
 	@Resource
 	private DisplayService displayService;
 	
-	// TODO the pagination is not good need to improve
 	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard/messageBoard.controller"})
 	public String showByPage(Model model, @RequestParam(value="page", defaultValue="1") String page) {
-		int pageNum = Integer.parseInt(page);
-		List<ArticleBean> articleBeans = displayService.getTitleByRange(10*(pageNum-1), 10);
+		int currentPage = Integer.parseInt(page);
+		int rows = 10; // TODO let user decide the rows
+		List<ArticleBean> articleBeans = displayService.getTitleByRange(rows * (currentPage - 1), rows);
 		model.addAttribute("articleBeans", articleBeans);
-		model.addAttribute("pages", getPaginationInfo(pageNum));
+		model.addAttribute("pages", getPaginationInfo(currentPage, rows));
+		model.addAttribute("currentPage", currentPage);
 		return "messageBoard";
 	}
 	
-	private List<String> getPaginationInfo(int pageNum) {
-		int start = 1;
-		int length = 10;
-		int pageCount = (int)(displayService.getArticleCount()/10 +1);
+	private List<String> getPaginationInfo(int currentPage, int rows) {
+		int startPage;
+		int endPage;
+		int maxPage = (int)(displayService.getArticleCount() / rows + 1);
 		List<String> pages = new LinkedList<>();
 		
-		if(pageNum > 6) {
-			start = pageNum - 5;
-		}
+		startPage = Math.max(1, currentPage - 4);
+		endPage = Math.min(maxPage, currentPage + 4);
 		
-		if(pageCount <= 10) {
-			length = pageCount;
-		} else if (pageCount == 0) {
-			length = 1;
-		}
-		
-		for(int i=start; i<=length; i++) {
+		for(int i=startPage; i<=endPage; i++) {
 			pages.add(String.valueOf(i));
 		}
 		

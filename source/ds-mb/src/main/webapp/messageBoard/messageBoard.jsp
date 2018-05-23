@@ -1,4 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 </head>
@@ -31,7 +32,7 @@
 		<ul class="pagination">
 			<c:forEach var="page" items="${pages}">
 				<!-- present page active -->
-				<li><a href="${context}/messageBoard.controller?page=${page}">${page}</a></li>
+				<li class="${page == currentPage ? 'active' : ''}"><a href="${context}/messageBoard.controller?page=${page}">${page}</a></li>
 			</c:forEach>
 		</ul>
 	</div>

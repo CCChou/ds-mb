@@ -45,4 +45,13 @@
 		<filter-name>characterFilter</filter-name>
 		<url-pattern>/messageBoard/post.controller</url-pattern>
 	</filter-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/errorPage.jsp</location>
+	</error-page>
 </web-app>
