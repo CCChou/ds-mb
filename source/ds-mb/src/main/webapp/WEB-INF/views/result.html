@@ -1,0 +1,31 @@
+<html th:replace="templates/base :: layout(~{::body})">
+<head>
+</head>
+<body>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>文章名稱</th>
+				<th>作者</th>
+				<th>發表日期</th>
+			</tr>
+			<tr th:each="article : ${articleBeans}">
+				<th><a th:href="@{/messageBoard/article.controller?id=${article.id}}" th:text="${article.title}"></a></th>
+				<th th:text="${article.account}"></th>
+				<th th:text="${article.date}"></th>
+			</tr>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+	<div class="text-center">
+		<ul class="pagination">
+			<!-- present page active -->
+			<li th:each="page : ${pages}">
+				<a href="@{/search.controller?page=${page}&condition=${condition}}" th:text="${page}"></a>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -11,15 +11,15 @@ import ds.web.practice.bean.UserBean;
 public class UserDao {
     @Resource
     private SessionFactory sessionFactory;
-    
-    public UserBean getUserByAccount(String account) {
+
+    public UserBean findUserByAccount(String account) {
         return sessionFactory.getCurrentSession().get(UserBean.class, account);
     }
-    
+
     public void create(UserBean userBean) {
         sessionFactory.getCurrentSession().save(userBean);
     }
-    
+
     // @TODO not implemented
     public boolean updateUser(UserBean userBean) {
         return false;

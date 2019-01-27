@@ -11,26 +11,26 @@ import ds.web.practice.dao.ArticleDao;
 
 @Service
 public class DisplayService {
-	@Resource
-	private ArticleDao articleDao;
-	
-	public List<ArticleBean> getTitleByRange(int start, int limit) {
-		return articleDao.findByRange(start, limit);
-	}
-	
-	public long getArticleCount() {
-		return articleDao.getCount();
-	}
-	
-	public ArticleBean getArticleById(int id) {
-		return articleDao.findById(id);
-	}
-	
-	public List<ArticleBean> getTitleRangeByCondition(String condition, int start, int limit) {
+    @Resource
+    private ArticleDao articleDao;
+
+    public List<ArticleBean> getTitleByRange(int start, int limit) {
+        return articleDao.findByRange(start, limit);
+    }
+
+    public long getArticleCount() {
+        return articleDao.findCount();
+    }
+
+    public ArticleBean getArticleById(int id) {
+        return articleDao.findById(id);
+    }
+
+    public List<ArticleBean> getTitleRangeByCondition(String condition, int start, int limit) {
         return articleDao.findTitleRangeByCondition(condition, start, limit);
     }
-    
+
     public long getArticleCountByCondition(String condition) {
-        return articleDao.getCountByTitleCondition(condition);
+        return articleDao.findCountByTitleCondition(condition);
     }
 }

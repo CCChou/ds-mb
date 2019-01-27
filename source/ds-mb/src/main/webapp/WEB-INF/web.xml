@@ -7,14 +7,18 @@
 		<servlet-name>DispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+		</init-param>
+		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/conf/spring/spring-mvc.xml</param-value>
+			<param-value>ds.web.practice.config.WebMvcConfig</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
-		<url-pattern>*.controller</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 	
 	<filter>
@@ -23,14 +27,6 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>xssFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	<filter>
-		<filter-name>sitemesh</filter-name>
-		<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<filter>
@@ -53,11 +49,6 @@
 		<filter-name>characterFilter</filter-name>
 		<url-pattern>/messageBoard/post.controller</url-pattern>
 	</filter-mapping>
-	
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-	
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/errorPage.jsp</location>

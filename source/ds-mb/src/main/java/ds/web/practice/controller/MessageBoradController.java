@@ -22,48 +22,54 @@ import ds.web.practice.service.PostService;
 @SessionAttributes("loginedAccount")
 public class MessageBoradController {
 	@Resource
-	private PostService postService; 
+	private PostService postService;
 	@Resource
 	private DisplayService displayService;
-	
-	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard/messageBoard.controller"})
-	public String showByPage(Model model, @RequestParam(value="page", defaultValue="1") String page) {
+
+	@RequestMapping(method = { RequestMethod.GET }, path = { "/messageBoard/messageBoard" })
+	public String showByPage(Model model, @RequestParam(value = "page", defaultValue = "1") String page) {
 		int currentPage = Integer.parseInt(page);
 		int rows = 10; // TODO let user decide the rows
 		List<ArticleBean> articleBeans = displayService.getTitleByRange(rows * (currentPage - 1), rows);
 		model.addAttribute("articleBeans", articleBeans);
 		model.addAttribute("pages", getPaginationInfo(currentPage, rows));
 		model.addAttribute("currentPage", currentPage);
-		return "messageBoard";
+		return "messageBoard/messageBoard";
 	}
-	
+
 	private List<String> getPaginationInfo(int currentPage, int rows) {
 		int startPage;
 		int endPage;
-		int maxPage = (int)(displayService.getArticleCount() / rows + 1);
+		int maxPage = (int) (displayService.getArticleCount() / rows + 1);
 		List<String> pages = new LinkedList<>();
-		
+
 		startPage = Math.max(1, currentPage - 4);
 		endPage = Math.min(maxPage, currentPage + 4);
-		
-		for(int i=startPage; i<=endPage; i++) {
+
+		for (int i = startPage; i <= endPage; i++) {
 			pages.add(String.valueOf(i));
 		}
-		
+
 		return pages;
 	}
-	
-	@RequestMapping(method= {RequestMethod.GET}, path= {"/messageBoard/article.controller"})
+
+	@RequestMapping(method = { RequestMethod.GET }, path = { "/messageBoard/article" })
 	public String showArticleById(Model model, String id) {
 		ArticleBean articleBean = displayService.getArticleById(Integer.parseInt(id));
 		model.addAttribute("articleBean", articleBean);
-		return "article";
+		return "messageBoard/article";
 	}
-	
-	@RequestMapping(method= {RequestMethod.POST}, path= {"/messageBoard/post.controller"})
-	public String postNewArticle(Model model, @ModelAttribute("loginedAccount") String loginedAccount, String title, String content) throws UnsupportedEncodingException {
+
+	@RequestMapping(method = { RequestMethod.POST }, path = { "/messageBoard/post" })
+	public String postNewArticle(Model model, @ModelAttribute("loginedAccount") String loginedAccount, String title,
+			String content) throws UnsupportedEncodingException {
 		// TODO prevent XSS
 		postService.postNewArticle(loginedAccount, title, content);
-		return "redirectMessageBoard";
+		return "redirect:messageBoard/messageBoard";
+	}
+
+	@RequestMapping(method = { RequestMethod.GET }, path = { "/messageBoard/post" })
+	public String postArticlePage() {
+		return "messageBoard/post";
 	}
 }

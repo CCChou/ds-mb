@@ -21,45 +21,55 @@ public class UserController {
     @Resource
     private LoginService loginService;
     @Resource
-    private RegisterService registerService; 
-        
-    @RequestMapping(method= {RequestMethod.POST}, path= {"/login.controller"})
+    private RegisterService registerService;
+
+    @RequestMapping(method = { RequestMethod.GET }, path = { "/login" })
+    public String loginPage() {
+    	return "login";
+    }
+    
+    @RequestMapping(method = { RequestMethod.POST }, path = { "/login" })
     public String login(Model model, String account, String password) {
         Map<String, String> errors = new HashMap<>();
         model.addAttribute("errors", errors);
-        
+
         if (!loginService.verifyUser(account, password)) {
             errors.put("errorMessage", "帳號不存在或密碼錯誤");
             return "loginPage";
         }
-        
+
         model.addAttribute("loginedAccount", account);
         return "index";
     }
-    
-    @RequestMapping(method= {RequestMethod.GET}, path= {"/logout.controller"})
+
+    @RequestMapping(method = { RequestMethod.GET }, path = { "/logout" })
     public String logout(SessionStatus status) {
         status.setComplete();
         return "index";
     }
-    
-    @RequestMapping(method= {RequestMethod.POST}, path= {"/register.controller"})
+
+    @RequestMapping(method = { RequestMethod.GET }, path = { "/register" })
+    public String registerPage() {
+    	return "register";
+    }
+    		
+    @RequestMapping(method = { RequestMethod.POST }, path = { "/register" })
     public String register(Model model, String account, String password, String passwordConfirm) {
         Map<String, String> errors = new HashMap<>();
         model.addAttribute("errors", errors);
-        
-        if(!password.equals(passwordConfirm)) {
+
+        if (!password.equals(passwordConfirm)) {
             errors.put("passwordConfirmError", "密碼不一致");
             return "registerPage";
         }
-        
-        if(!registerService.checkAccount(account)) {
+
+        if (!registerService.checkAccount(account)) {
             errors.put("accountError", "帳號名稱已被註冊");
             return "registerPage";
         }
-        
+
         registerService.register(account, password);
         return "index";
     }
-    
+
 }

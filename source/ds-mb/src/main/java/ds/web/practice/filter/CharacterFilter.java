@@ -19,7 +19,7 @@ public class CharacterFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        chain.doFilter(new CharacterWrapper((HttpServletRequest)request), response);
+        chain.doFilter(new CharacterWrapper((HttpServletRequest) request), response);
     }
 
     @Override

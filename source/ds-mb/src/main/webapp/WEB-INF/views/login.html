@@ -1,11 +1,10 @@
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<html>
+<html th:replace="templates/base :: layout(~{::body})">
 <head>
 </head>
 <body>
-	<form action="./login.controller" method="post" class="form-horizontal">
+	<form th:action="@{login}" method="post" class="form-horizontal">
 		<div class="form-group">
-			<label for="account" class="col-sm-2 control-label">帳號</label>${errors.errorMessage}
+			<label for="account" class="col-sm-2 control-label">帳號</label><span th:text="${errors?.errorMessage}"></span>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" name="account" id="account" placeholder="請輸入你的帳號" required="required">
 			</div>
