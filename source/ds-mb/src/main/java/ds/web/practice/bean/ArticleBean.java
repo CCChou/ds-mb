@@ -7,66 +7,71 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "article")
 public class ArticleBean {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String title;
-    private String content;
-    private String account;
-    @Column(insertable = false)
-    private Date date;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String title;
+	private String content;
+	@Column(insertable = false)
+	private Date date;
 
-    public ArticleBean() {
-    }
+	@ManyToOne
+	@JoinColumn(name = "userId", referencedColumnName = "id")
+	private UserBean user;
 
-    public ArticleBean(String account, String title, String content) {
-        this.account = account;
-        this.title = title;
-        this.content = content;
-    }
+	public ArticleBean() {
+	}
 
-    public int getId() {
-        return id;
-    }
+	public ArticleBean(UserBean user, String title, String content) {
+		this.user = user;
+		this.title = title;
+		this.content = content;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public String getAccount() {
-        return account;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public void setAccount(String account) {
-        this.account = account;
-    }
+	public Date getDate() {
+		return date;
+	}
 
-    public Date getDate() {
-        return date;
-    }
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+	public UserBean getUser() {
+		return user;
+	}
+
+	public void setUser(UserBean user) {
+		this.user = user;
+	}
 }

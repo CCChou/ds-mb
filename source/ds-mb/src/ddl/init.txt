@@ -1,18 +1,19 @@
-create table article(
+create table article (
 	id int auto_increment primary key,
 	title nvarchar(255),
 	content nvarchar(255),
-	account varchar(255),
+	userid int,
 	date datetime default current_timestamp,
-	foreign key (account) references user(account)
-)
+	foreign key (userid) references user(id)
+);
 
-create table user(
-	account varchar(255) primary key,
-	hashedPwd varchar(255)
-)
+create table user (
+	id int auto_increment primary key,
+	account varchar(255) not null,
+	password varchar(255)
+);
 
-create table comment(
+create table comment (
 	id int auto_increment primary key,
 	articleId int,
 	account varchar(255),
@@ -20,4 +21,4 @@ create table comment(
 	comment nvarchar(255),
 	foreign key (account) references user(account),
 	foreign key (articleId) references article(id)
-)
+);

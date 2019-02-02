@@ -9,19 +9,20 @@ import ds.web.practice.bean.UserBean;
 
 @Repository
 public class UserDao {
-    @Resource
-    private SessionFactory sessionFactory;
+	@Resource
+	private SessionFactory sessionFactory;
 
-    public UserBean findUserByAccount(String account) {
-        return sessionFactory.getCurrentSession().get(UserBean.class, account);
-    }
+	public UserBean findByAccount(String account) {
+		return sessionFactory.getCurrentSession().createQuery("FROM UserBean WHERE account = :account", UserBean.class)
+				.setParameter("account", account).uniqueResult();
+	}
 
-    public void create(UserBean userBean) {
-        sessionFactory.getCurrentSession().save(userBean);
-    }
+	public void create(UserBean userBean) {
+		sessionFactory.getCurrentSession().save(userBean);
+	}
 
-    // @TODO not implemented
-    public boolean updateUser(UserBean userBean) {
-        return false;
-    }
+	// @TODO not implemented
+	public boolean updateUser(UserBean userBean) {
+		return false;
+	}
 }

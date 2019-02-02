@@ -25,11 +25,11 @@
 			<div class="navbar-brand"><a th:href="@{/index}">Dennis Web Test</a></div>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-right" th:if="${loginedAccount}">
-				<li><a href="#" th:text="${loginedAccount}"></a></li>
+			<ul class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
+				<li><a href="#" sec:authentication="name"></a></li>
 				<li><a th:href="@{/logout}">登出</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right" th:unless="${loginedAccount}">
+			<ul class="nav navbar-nav navbar-right" sec:authorize="isAnonymous()">
 				<li><a th:href="@{/login}">登入</a></li>
 				<li><a th:href="@{/register}">註冊</a></li>
 			</ul>

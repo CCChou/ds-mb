@@ -9,32 +9,38 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user")
 public class UserBean {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String account;
-    private String hashedPwd;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String account;
+	private String password;
 
-    public UserBean() {
-    }
+	public UserBean(String account, String password) {
+		this.account = account;
+		this.password = password;
+	}
 
-    public UserBean(String account, String hashedPwd) {
-        this.account = account;
-        this.hashedPwd = hashedPwd;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getAccount() {
-        return account;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setAccount(String account) {
-        this.account = account;
-    }
+	public String getAccount() {
+		return account;
+	}
 
-    public String getHashedPwd() {
-        return hashedPwd;
-    }
+	public void setAccount(String account) {
+		this.account = account;
+	}
 
-    public void setHashedPwd(String hashedPwd) {
-        this.hashedPwd = hashedPwd;
-    }
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }
