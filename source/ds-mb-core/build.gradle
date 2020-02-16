@@ -5,22 +5,22 @@ plugins {
 }
 
 group = 'com.example'
-version = '0.0.1'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation 'commons-codec:commons-codec:1.11'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE'
-	implementation 'org.apache.commons:commons-dbcp2:2.5.0'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.0'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.0'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.0'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
