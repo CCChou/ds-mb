@@ -5,3 +5,9 @@
 
 # ignore maven 
 target
+
+# intellij
+.idea
+
+# frontend lib
+node_modules
