@@ -12,11 +12,13 @@ import java.util.stream.Collectors;
 
 public class JwtUser implements UserDetails {
 
+    private int id;
     private String userName;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public JwtUser(String userName, String password, Collection<? extends GrantedAuthority> authorities) {
+    public JwtUser(int id, String userName, String password, Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
         this.userName = userName;
         this.password = password;
         this.authorities = authorities;
@@ -57,8 +59,12 @@ public class JwtUser implements UserDetails {
         return true;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public static JwtUser of(User user) {
-        return new JwtUser(user.getName(), user.getPassword(), convertToGrantedAuthorities(user.getRoles()));
+        return new JwtUser(user.getId(), user.getName(), user.getPassword(), convertToGrantedAuthorities(user.getRoles()));
     }
 
     private static List<GrantedAuthority> convertToGrantedAuthorities(List<Role> roles) {

@@ -1,5 +1,6 @@
 package ds.web.practice.security;
 
+import ds.web.practice.service.AuthenticateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,19 +20,14 @@ import java.io.IOException;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private AuthenticateService authenticateService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader("Authorization");
         if (header != null && header.startsWith("Bearer")) {
             String token = header.substring(7);
-            String userName = JwtUtils.getUserNameFromToken(token);
-            UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            // 設定 SecurityContext，以便之後可以透過物件取得一些相關資訊
-            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            authenticateService.authenticate(request, token);
         }
         filterChain.doFilter(request, response);
     }

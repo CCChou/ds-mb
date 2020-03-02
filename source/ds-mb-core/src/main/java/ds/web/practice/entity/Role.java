@@ -1,14 +1,14 @@
 package ds.web.practice.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Role {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String name;
     @ManyToMany(mappedBy = "roles")
     private List<User> users;

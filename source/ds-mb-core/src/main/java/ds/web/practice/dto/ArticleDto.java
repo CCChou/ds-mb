@@ -1,21 +1,15 @@
-package ds.web.practice.entity;
+package ds.web.practice.dto;
 
-import javax.persistence.*;
 import java.time.Instant;
 
-@Entity
-public class Article {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ArticleDto {
+
     private int id;
     private String title;
     private String content;
     private Instant createTime;
     private Instant lastUpdateTime;
-
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
-    private User owner;
+    private String ownerName;
 
     public int getId() {
         return id;
@@ -57,11 +51,11 @@ public class Article {
         this.lastUpdateTime = lastUpdateTime;
     }
 
-    public User getOwner() {
-        return owner;
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 }

@@ -2,6 +2,7 @@ package ds.web.practice.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -10,6 +11,7 @@ public class User {
     private int id;
     @Column(unique = true)
     private String name;
+    @Column(nullable = false)
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -18,6 +20,8 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
     private List<Role> roles;
+    @OneToMany(mappedBy = "owner")
+    private Set<Article> articles;
 
     public int getId() {
         return id;
@@ -49,5 +53,13 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(Set<Article> articles) {
+        this.articles = articles;
     }
 }
