@@ -1,10 +1,12 @@
 package ds.web.practice.controller;
 
 import ds.web.practice.dto.ArticleDto;
+import ds.web.practice.security.JwtUser;
 import ds.web.practice.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,20 +29,19 @@ public class ArticleController {
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @PostMapping("/articles")
-    public void saveArticle(ArticleDto form) {
+    public void saveArticle(@AuthenticationPrincipal JwtUser user, ArticleDto form) {
+        form.setOwnerId(user.getId());
         articleService.save(form);
     }
 
-    // TODO hasPermission to update document
-    // for now suppose that the admin can not update
+    @PreAuthorize("@authorizeService.hasAuthorization(principal.id, #id)")
     @PutMapping("/articles/{id}")
     public void updateArticle(@PathVariable int id, ArticleDto form) {
         articleService.update(id, form);
     }
 
-    // TODO hasPermission to delete document
-    // for now suppose that the admin can delete
-    @DeleteMapping("/article/{id}")
+    @PreAuthorize("@authorizeService.hasAuthorization(principal.id, #id) or hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/articles/{id}")
     public void deleteArticle(@PathVariable int id) {
         articleService.delete(id);
     }

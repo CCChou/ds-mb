@@ -9,6 +9,7 @@ public class ArticleDto {
     private String content;
     private Instant createTime;
     private Instant lastUpdateTime;
+    private int ownerId;
     private String ownerName;
 
     public int getId() {
@@ -49,6 +50,14 @@ public class ArticleDto {
 
     public void setLastUpdateTime(Instant lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 
     public String getOwnerName() {

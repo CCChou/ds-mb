@@ -58,6 +58,7 @@ public class UserService {
         user.setName(form.getName());
         user.setPassword(passwordEncoder.encode(form.getPassword()));
         user.setRoles(toRoles(form.getRoleIds()));
+        userRepository.save(user);
     }
 
     public void delete(int id) {

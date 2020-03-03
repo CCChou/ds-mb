@@ -4,10 +4,12 @@ import ds.web.practice.dto.RoleDto;
 import ds.web.practice.entity.Role;
 import ds.web.practice.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class RoleService {
 
     @Autowired
